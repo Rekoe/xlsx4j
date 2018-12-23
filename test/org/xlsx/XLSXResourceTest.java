@@ -1,19 +1,14 @@
 package org.xlsx;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.io.FileNotFoundException;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import org.nutz.lang.Streams;
 
 public class XLSXResourceTest {
+	public static void main(String[] args) throws FileNotFoundException {
 
-    @Test
-    public void testExtract() throws IOException {
+		StreamXLSXResource xlsxResource = new StreamXLSXResource(Streams.fileIn("test/test.xlsx"));
+		System.out.println(xlsxResource.has("Sheet1"));
+	}
 
-        StreamXLSXResource xlsxResource = new StreamXLSXResource(new FileInputStream("res/test/test.xlsx"));
-        Assert.assertTrue(xlsxResource.has("xl/workbook.xml"));
-        Assert.assertTrue(xlsxResource.has("xl/sharedStrings.xml"));
-        Assert.assertTrue(xlsxResource.has("xl/worksheets/sheet1.xml"));
-    }
 }
